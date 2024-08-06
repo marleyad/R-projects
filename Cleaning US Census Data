@@ -1,0 +1,100 @@
+---
+title: "Cleaning US Census Data"
+output: html_notebook
+---
+
+```{r message=FALSE, warning=FALSE, error=TRUE}
+# load libraries
+library(dplyr)
+library(readr)
+library(tidyr)
+
+
+```
+
+```{r message=FALSE, warning=FALSE, error=TRUE}
+# load CSVs
+files <- list.files(pattern="states_.*csv")
+files
+df_files <- lapply(files, read_csv)
+df_files
+us_census <- bind_rows(df_files)
+```
+
+```{r error=TRUE}
+# inspect data
+str(us_census)
+head(us_census)
+```
+
+```{r error=TRUE}
+# drop X1 column
+us_census <- us_census %>%
+  select(-X1)
+head(us_census)
+```
+
+```{r error=TRUE}
+# remove % from race columns
+us_census <- us_census %>%
+  mutate(across(c(Hispanic, White, Black, Native, Asian, Pacific), ~ gsub('\\%','', .)))
+head(us_census)
+```
+
+```{r error=TRUE}
+# remove $ from Income column
+us_census <- us_census %>%
+  mutate(Income=gsub('\\$','',Income))
+head(us_census)
+```
+
+```{r error=TRUE}
+# separate GenderPop column
+us_census <- us_census %>%
+  separate(GenderPop, c('male_pop','female_pop'), '_')
+head(us_census)
+
+```
+
+```{r error=TRUE}
+# clean male and female population columns
+us_census <- us_census %>%
+  mutate(male_pop=gsub('\\M','',male_pop),female_pop=gsub('\\F','',female_pop))
+head(us_census)
+```
+
+```{r error=TRUE}
+# update column data types
+us_census <- us_census %>%
+  mutate(across(c(Hispanic, White, Black, Native, Asian, Pacific, Income, male_pop, female_pop), ~ as.numeric(.x)))
+head(us_census)
+```
+
+```{r error=TRUE}
+# update values of race columns
+us_census <- us_census %>%
+  mutate(across(.cols = c(Hispanic, White, Black, Native, Asian, Pacific), .names = "{.col}", ~ .x / 100))
+head(us_census)
+```
+
+```{r error=TRUE}
+# check for duplicate rows
+table(duplicated(us_census))
+```
+
+```{r error=TRUE}
+# remove duplicate rows
+us_census <- distinct(us_census)
+```
+
+```{r error=TRUE}
+# check for duplicate rows
+table(duplicated(us_census))
+
+
+```
+
+```{r error=TRUE}
+# clean data frame
+head(us_census)
+```
