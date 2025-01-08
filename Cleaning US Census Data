@@ -5,7 +5,7 @@ output: html_notebook
 
 ```{r message=FALSE, warning=FALSE, error=TRUE}
 # load libraries
-library(dplyr)
+library(dplyr)  
 library(readr)
 library(tidyr)
 
