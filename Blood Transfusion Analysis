@@ -7,7 +7,7 @@ output: html_notebook
 # load data
 load("vein_lifespans.Rda")
 load("artery_lifespans.Rda")
-```
+```  
 
 ```{r error=TRUE}
 # view vein_lifespans here:
