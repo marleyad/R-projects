@@ -6,7 +6,7 @@
 - **Data Cleaning and Preparation:** Ensured data quality by cleaning, formatting, and validating datasets for accurate analysis.
 - **Insight Generation:** Extracted key insights from diverse datasets, ranging from environmental data to economic indicators.
 
----
+--- 
 
 ## Projects
 
