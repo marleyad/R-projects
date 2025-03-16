@@ -10,7 +10,7 @@ library(dplyr)
 library(ggplot2)
 ```
 
-```{r error=TRUE}
+```{r error=TRUE} 
 options(scipen=10000) #removes scientific notation
 #Create NOAA Visualization here:
 noaa_data <- read_csv("carbon_dioxide_levels.csv")
