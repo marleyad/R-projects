@@ -2,7 +2,7 @@
 title: "Cleaning US Census Data"
 output: html_notebook
 ---
-
+ 
 ```{r message=FALSE, warning=FALSE, error=TRUE}
 # load libraries
 library(dplyr)  
