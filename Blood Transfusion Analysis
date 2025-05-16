@@ -5,7 +5,7 @@ output: html_notebook
 
 ```{r error=TRUE}
 # load data 
-load("vein_lifespans.Rda")
+load("vein_lifespans.Rda")  
 load("artery_lifespans.Rda")
 ```  
 
