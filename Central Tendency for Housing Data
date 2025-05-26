@@ -3,7 +3,7 @@ title: "Mode in R"
 output: html_notebook
 ---
 ```{r message=FALSE, warning=FALSE, error=TRUE}
-# Load libraries
+# Load libraries 
 library(readr)
 library(dplyr)
 library(DescTools)
